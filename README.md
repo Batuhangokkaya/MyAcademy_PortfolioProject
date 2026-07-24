@@ -22,6 +22,7 @@ Cookie Authentication
 Tailwind CSS
 JavaScript (Fetch API / AJAX)
 SweetAlert2
+
 📸 Screenshots
 <img width="1894" height="949" alt="1" src="https://github.com/user-attachments/assets/5a7cac09-ada6-4993-b79f-c6a6b6c33f00" />
 <img width="1882" height="852" alt="2" src="https://github.com/user-attachments/assets/608eb8b7-b4b3-4c16-99bc-a21a1325c6c0" />
