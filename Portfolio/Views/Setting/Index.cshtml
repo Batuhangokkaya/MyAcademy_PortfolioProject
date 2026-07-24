@@ -1,0 +1,49 @@
+﻿@model Admin
+@{
+    ViewData["Title"] = "Ayarlar";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Ayarlar
+        </h2>
+
+        <p class="text-body-lg text-on-surface-variant">
+            Ayarlar buradan düzenleyebilirsiniz.
+        </p>
+    </div>
+</header>
+<form method="post" asp-controller="Setting" asp-action="Update">
+    <input type="hidden" asp-for="ID" />
+    <div class="w-full max-w-5xl mx-auto px-3 py-4 md:px-4 md:py-5 xl:px-6 xl:py-6">
+        <div class="tab-content rounded-xl border border-outline-variant bg-surface-container-lowest p-6 transition-opacity duration-300 md:p-8">
+            <div class="flex flex-col gap-8 md:flex-row md:items-start">
+                <div class="w-full flex-1">
+                    <h3 class="mb-5 text-h2 text-on-surface">Genel Bilgiler</h3>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label class="mb-1 block text-label-md font-medium text-on-surface-variant">Tam Ad</label>
+                            <input asp-for="FullName" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Ad Soyad girin" />
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-label-md font-medium text-on-surface-variant">Kullanıcı Adı</label>
+                            <input asp-for="UserName" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Kullanıcı adı girin" />
+                        </div>
+                        <div>
+                            <label  class="mb-1 block text-label-md font-medium text-on-surface-variant">Şifre</label>
+                            <input asp-for="Password" type="password" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Şifre girin" />
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-label-md font-medium text-on-surface-variant">Görsel</label>
+                            <input asp-for="ImageURL" type="text" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Görsel URL'i' girin" />
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-5 rounded-lg bg-primary px-6 py-2.5 font-medium text-on-primary transition-all hover:shadow-md active:scale-95">Değişiklikleri Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

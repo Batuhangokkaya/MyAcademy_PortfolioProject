@@ -1,0 +1,56 @@
+﻿@model Banner
+@{
+    ViewData["Title"] = "Bannerlarım";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Bannerlarım
+        </h2>
+
+        <p class="text-body-lg text-on-surface-variant">
+            Portfolyonuzdaki Bannerı buradan yönetebilirsiniz
+        </p>
+    </div>
+</header>
+<div class="max-w-5xl mx-auto px-3 py-4 md:px-4 md:py-5 xl:px-6 xl:py-6">
+    <div class="xl:col-span-5 flex flex-col gap-6">
+        <div class="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
+            <form method="post" asp-controller="Banner" asp-action="Update">
+                <input type="hidden" asp-for="ID" />
+                <div class="space-y-5">
+                    <h3 class="flex items-center gap-2 text-h2 text-on-surface">
+                        <span class="material-symbols-outlined text-primary">edit_note</span>
+                        İçerik Ayarları
+                    </h3>
+                    <div>
+                        <label class="mb-2 block text-label-md text-on-surface">Başlık</label>
+                        <input asp-for="Title" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Başlık giriniz" type="text" />
+                    </div>
+                    <div>
+                        <label class="mb-2 block text-label-md text-on-surface">Kısa Açıklama</label>
+                        <textarea asp-for="Description" class="w-full resize-none rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Kısa açıklama girin" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="space-y-5 border-t border-outline-variant mt-6 pt-6 mb-5">
+                    <h3 class="flex items-center gap-2 text-h2 text-on-surface">
+                        <span class="material-symbols-outlined text-primary">image</span>
+                        Görsel ve Durum
+                    </h3>
+                    <div>
+                        <label class="mb-2 block text-label-md text-on-surface">Banner</label>
+                        <input asp-for="ImageURL" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Banner URL'i giriniz" type="text" />
+                    </div>
+                </div>
+                <div>
+                    <button class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-on-primary transition-all hover:bg-primary-container hover:shadow-lg active:scale-95" type="submit">
+                        <span class="material-symbols-outlined">save</span>
+                        Değişiklikleri Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@model List<TechStack>
+@{
+    ViewData["Title"] = "Teknolojilerim";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+
+    int count = 0;
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Teknolojiler
+        </h2>
+        <p class="text-body-lg text-on-surface-variant">
+            Projelerde kullandığınız teknolojileri yönetin.
+        </p>
+    </div>
+
+    <a href="/TechStack/Create" class="self-end mt-1 inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-on-primary rounded-lg whitespace-nowrap hover:shadow-lg transition-all active:scale-95">
+        <span class="material-symbols-outlined">add</span>
+        <span>Yeni Proje Ekle</span>
+    </a>
+</header>
+<div class="p-container-padding max-w-[1600px] mx-auto">
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-surface-container-low border-b border-outline-variant">
+                    <tr>
+                        <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">#</th>
+                        <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Teknoloji Adı</th>
+                        <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">İlişkili Proje Sayısı</th>
+                        <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant text-right">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant">
+                    @foreach (var techStack in Model)
+                    {
+                        count++;
+                        <tr class="hover:bg-surface-container-low transition-colors group">
+                            <td class="px-6 py-4">
+                                @count
+                            </td>
+                            <td class="px-6 py-4 font-body-md text-body-md text-on-surface font-medium">@techStack.Name</td>
+                            <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">@techStack.Category.Name</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="/TechStack/Update/@techStack.ID" class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                    <a href="/TechStack/Delete/@techStack.ID" class="p-2 text-on-surface-variant hover:text-error transition-colors">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+            <span class="font-body-md text-body-md text-on-surface-variant">Toplam Teknoloji: @ViewBag.TechStacksCount</span>
+        </div>
+    </div>
+</div>

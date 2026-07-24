@@ -1,0 +1,55 @@
+﻿@model List<Skill>
+@{
+    ViewData["Title"] = "Yeteneklerim";
+    Layout           = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Yeteneklerim
+        </h2>
+        <p class="text-body-lg text-on-surface-variant">
+            Teknik ve profesyonel yeteneklerinizi yönetin.
+        </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row md:items-center justify-end gap-4 mb-stack-lg mb-1">
+        <a href="/Skill/Create" class="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded-lg font-title-md flex items-center gap-2 transition-all shadow-sm active:scale-95" onclick="document.getElementById('skillModal').classList.remove('hidden')">
+            <span class="material-symbols-outlined">add</span>
+            Yeni Yetenek Ekle
+        </a>
+    </div>
+</header>
+<div class="p-container-padding max-w-7xl mx-auto">
+    <!-- Bento Grid of Skills -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+        @foreach (var skill in Model)
+        {
+            <div class="bg-white rounded-xl border border-outline-variant overflow-hidden group hover:shadow-lg transition-all duration-300">
+                <div class="p-6">
+                    <h4 class="font-title-lg text-title-lg mb-1">@skill.Name</h4>
+                    <span class="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-label-sm font-medium mb-6">@skill.Level</span>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-label-lg text-on-surface-variant">
+                            <span>Yetenek Seviyesi</span>
+                            <span class="font-bold text-primary">%@skill.Value</span>
+                        </div>
+                        <div class="w-full bg-surface-container-highest rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full skill-progress-bar" style="width: @skill.Value%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low px-6 py-3 border-t border-outline-variant flex justify-end items-center gap-4">
+                    <a href="/Skill/Update/@skill.ID" class="fa fa-edit text-primary text-lg hover:scale-110 transition-all"></a>
+                    <a href="/Skill/Delete/@skill.ID" class="fa fa-trash text-red-500 text-lg hover:scale-110 transition-all"></a>
+                </div>
+            </div>
+        }
+        <!-- Empty State Card (Quick Add Trigger) -->
+        <a href="/Skill/Create" class="border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center p-6 text-on-surface-variant hover:border-primary hover:text-primary hover:bg-primary/5 transition-all group" onclick="document.getElementById('skillModal').classList.remove('hidden')">
+            <span class="material-symbols-outlined text-4xl mb-2 group-hover:scale-110 transition-transform">add_circle</span>
+            <span class="font-title-md">Yetenek Ekle</span>
+        </a>
+    </div>
+</div>

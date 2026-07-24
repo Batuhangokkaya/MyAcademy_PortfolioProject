@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio Admin - Ayarlar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#424656",
+                        "surface": "#f9f9ff",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "secondary-container": "#d0e1fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-container": "#eaf4ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-secondary-container": "#54647a",
+                        "outline": "#737687",
+                        "tertiary-container": "#0076a9",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#0052dc",
+                        "primary": "#004bca",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-highest": "#d8e3fb",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline-variant": "#c2c6d9",
+                        "on-primary-container": "#f1f2ff",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "surface-variant": "#d8e3fb",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0061ff",
+                        "surface-container-high": "#dee8ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f0f3ff",
+                        "inverse-surface": "#263143",
+                        "on-error": "#ffffff",
+                        "tertiary": "#005c85",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-background": "#111c2d",
+                        "secondary": "#505f76",
+                        "surface-dim": "#cfdaf2",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-surface": "#111c2d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "sidebar-width": "240px",
+                        "navbar-height": "64px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "0px", "fontWeight": "600"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "0px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500"}],
+                        "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-tab { border-bottom: 2px solid #004bca; color: #004bca; font-weight: 600; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[240px] bg-surface-container-lowest dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg px-gutter z-50">
+<div class="mb-stack-lg px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Portfolio Admin</h1>
+<p class="text-label-sm text-on-surface-variant dark:text-surface-variant">Yönetim Paneli</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto scrollbar-hide">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-body-md text-body-md">Projelerim</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-body-md text-body-md">Kategoriler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-body-md text-body-md">Yeteneklerim</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-body-md text-body-md">Teknolojiler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-body-md text-body-md">Deneyimler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md text-body-md">Eğitimler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">rebase_edit</span>
+<span class="font-body-md text-body-md">Hizmetler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-md text-body-md">Hakkımızda</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">contact_page</span>
+<span class="font-body-md text-body-md">İletişim</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-body-md text-body-md">Mesajlar</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">view_carousel</span>
+<span class="font-body-md text-body-md">Banner</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Ayarlar</span>
+</a>
+</nav>
+<div class="pt-stack-lg border-t border-outline-variant">
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span class="font-body-md text-body-md font-medium">Batuhan Gökkaya</span>
+</div>
+</div>
+</aside>
+<!-- Top Navigation -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-navbar-height bg-surface border-b border-outline-variant flex items-center justify-between px-container-padding z-40">
+<div class="flex items-center flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary text-body-md" placeholder="Arama yapın..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-title-md text-title-md leading-none">Batuhan Gökkaya</p>
+<p class="text-label-sm text-on-surface-variant">Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A professional close-up studio portrait of a young male creative professional with a friendly expression. He has short dark hair, wearing a clean, modern navy blue sweater. The background is a soft, out-of-focus office environment with warm morning light filtering through a window, emphasizing a clean and professional administrative atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp50EVcp8Qj_oO50lXuRniiRpLkAwgXQss05xJ_CxPqQpSuntdkbTMOKQhHbMMxm8wx8TLohI95VPFJJawWMebrYK6EIGJd78scAwd-EVvOGwaGmNVo1qHK4v3oNb-i9ETMDbTi1P12uBmuY7jr3UZUBTGkkzy9u5jtBI5ckD2wbpXQW5-I-6brNLFLSx3-_hn4ENpPgAJpZCtVXPbI54LiJV02BO4-LA1bG_37KfXShtO_Kgw22zQUY0yhjkf741apt1yCR8QHJwk"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[88px] ml-[240px] px-container-padding pb-stack-lg">
+<!-- Header Section -->
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg">Ayarlar</h2>
+<p class="text-body-lg text-on-surface-variant">Hesap ve yönetim paneli ayarlarınızı yönetin.</p>
+</div>
+<!-- Settings Layout: Bento Style -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Tab Navigation - Left Side for Desktop -->
+<div class="lg:col-span-3 space-y-1">
+<button class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all active-tab-style" id="tab-profile" onclick="switchTab('profile')">
+<span class="material-symbols-outlined">person</span>
+<span class="font-title-md text-title-md">Profil</span>
+</button>
+<button class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-low" id="tab-security" onclick="switchTab('security')">
+<span class="material-symbols-outlined">security</span>
+<span class="font-title-md text-title-md">Güvenlik</span>
+</button>
+<button class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-low" id="tab-appearance" onclick="switchTab('appearance')">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-title-md text-title-md">Görünüm</span>
+</button>
+<button class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-low" id="tab-notifications" onclick="switchTab('notifications')">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-title-md text-title-md">Bildirimler</span>
+</button>
+</div>
+<!-- Settings Content - Right Side -->
+<div class="lg:col-span-9">
+<!-- Profil Tab -->
+<div class="tab-content bg-surface-container-lowest border border-outline-variant rounded-xl p-8 transition-opacity duration-300" id="content-profile">
+<div class="flex items-start gap-8 mb-8">
+<div class="relative">
+<img class="w-32 h-32 rounded-full object-cover border-4 border-surface-container-high shadow-lg" data-alt="A focused close-up of a professional male avatar, headshot style, with clean-cut grooming and a confident look. The individual is wearing a sophisticated dark blazer over a white shirt. The lighting is crisp and cinematic, set against a neutral, high-quality architectural background in soft grey tones, perfectly suited for a high-end admin dashboard profile section." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwDmrKK_e_JCQzFvugOEBSvUFeBD3d2zdngs_KOEADjPrTMDNcn8TkydHW0Y6LvAcMnYEm_KEyWiUcErt2jWgirpqo_He4xu9-KAU57qKuWdijcci0J_XdLGzlqLVG9fhGzlezgkPzGRP-F7x2k7c4IGXjbc5pPSBn-rEtY91npCtwJu6x4bGlwxqZHYwkLmhcott7YO0YbR_NML5yyTn33LHsYqavLyIA2KDCvtRM5N_v6m1SUJjdrxMx28tcgqzBLuOe8a98ogn7"/>
+<button class="absolute bottom-0 right-0 p-2 bg-primary text-on-primary rounded-full shadow-md hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<div class="flex-1 space-y-4">
+<h3 class="font-title-lg text-title-lg mb-2">Genel Bilgiler</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-label-lg font-medium text-on-surface-variant">Tam Ad</label>
+<input class="w-full px-4 py-2 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="text" value="Batuhan Gökkaya"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-lg font-medium text-on-surface-variant">Kullanıcı Adı</label>
+<input class="w-full px-4 py-2 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="text" value="batuhangokkya"/>
+</div>
+<div class="space-y-1 md:col-span-2">
+<label class="text-label-lg font-medium text-on-surface-variant">E-posta Adresi</label>
+<input class="w-full px-4 py-2 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="email" value="admin@batuhangokkya.com"/>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all mt-4">Değişiklikleri Kaydet</button>
+</div>
+</div>
+</div>
+<!-- Güvenlik Tab -->
+<div class="tab-content hidden bg-surface-container-lowest border border-outline-variant rounded-xl p-8 transition-opacity duration-300" id="content-security">
+<h3 class="font-title-lg text-title-lg mb-6">Şifre ve Güvenlik</h3>
+<div class="max-w-xl space-y-6">
+<div class="space-y-4">
+<div class="space-y-1">
+<label class="text-label-lg font-medium text-on-surface-variant">Mevcut Şifre</label>
+<input class="w-full px-4 py-2 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary outline-none" placeholder="••••••••" type="password"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-lg font-medium text-on-surface-variant">Yeni Şifre</label>
+<input class="w-full px-4 py-2 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary outline-none" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md">İki Faktörlü Doğrulama (2FA)</p>
+<p class="text-body-md text-on-surface-variant">Hesabınıza ekstra bir güvenlik katmanı ekleyin.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all">Şifreyi Güncelle</button>
+</div>
+</div>
+<!-- Görünüm Tab -->
+<div class="tab-content hidden bg-surface-container-lowest border border-outline-variant rounded-xl p-8 transition-opacity duration-300" id="content-appearance">
+<h3 class="font-title-lg text-title-lg mb-6">Panel Görünümü</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<p class="font-title-md text-title-md">Tema Önizleme</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="border-2 border-primary rounded-xl p-4 bg-white cursor-pointer group relative overflow-hidden">
+<div class="flex gap-2 mb-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div class="w-1/2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div class="space-y-1">
+<div class="w-full h-1 rounded bg-outline-variant opacity-30"></div>
+<div class="w-full h-1 rounded bg-outline-variant opacity-30"></div>
+</div>
+<p class="mt-4 text-center font-medium text-label-lg">Açık Tema</p>
+<span class="absolute top-2 right-2 material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="border-2 border-transparent rounded-xl p-4 bg-[#1e293b] cursor-pointer hover:border-outline transition-all">
+<div class="flex gap-2 mb-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-1/2 h-2 rounded-full bg-slate-700"></div>
+</div>
+<div class="space-y-1">
+<div class="w-full h-1 rounded bg-slate-700"></div>
+<div class="w-full h-1 rounded bg-slate-700"></div>
+</div>
+<p class="mt-4 text-center font-medium text-label-lg text-white">Koyu Tema</p>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md">Kompakt Sidebar</p>
+<p class="text-body-md text-on-surface-variant">Daha fazla çalışma alanı için kenar çubuğunu daraltın.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-2">
+<label class="text-label-lg font-medium text-on-surface-variant">Panel Dili</label>
+<select class="w-full px-4 py-2 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary outline-none bg-white">
+<option>Türkçe</option>
+<option>English</option>
+<option>Deutsch</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Bildirimler Tab -->
+<div class="tab-content hidden bg-surface-container-lowest border border-outline-variant rounded-xl p-8 transition-opacity duration-300" id="content-notifications">
+<h3 class="font-title-lg text-title-lg mb-6">Bildirim Tercihleri</h3>
+<div class="space-y-6 max-w-2xl">
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<p class="font-title-md text-title-md">Yeni Mesajlar</p>
+<p class="text-body-md text-on-surface-variant">İletişim formundan gelen yeni mesajlar için bildirim al.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">work_update</span>
+<div>
+<p class="font-title-md text-title-md">Proje Güncellemeleri</p>
+<p class="text-body-md text-on-surface-variant">Yorumlar veya proje beğenileri hakkında bilgilendiril.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">alternate_email</span>
+<div>
+<p class="font-title-md text-title-md">E-posta Bildirimleri</p>
+<p class="text-body-md text-on-surface-variant">Haftalık özetleri ve sistem uyarılarını e-posta ile al.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show selected content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            
+            // Update button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'font-bold');
+                btn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-low');
+            });
+            
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('bg-secondary-container', 'text-on-secondary-container', 'font-bold');
+            activeBtn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-low');
+        }
+
+        // Initialize first tab
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('profile');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,157 @@
+﻿@model Portfolio.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<!-- Dashboard Header -->
+<header class="mb-10">
+    <h2 class="text-display-lg text-on-surface">Dashboard</h2>
+    <p class="text-body-lg text-on-surface-variant">Portfolyo içeriklerinizi buradan yönetebilirsiniz.</p>
+</header>
+<!-- Stats Grid (Row 1) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Stat Card 1 -->
+    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+        <div>
+            <p class="text-label-md text-on-surface-variant mb-1">Toplam Proje</p>
+            <h3 class="text-headline-md font-bold">@ViewBag.ProjectCount</h3>
+        </div>
+        <div class="w-12 h-12 rounded-lg bg-primary-fixed/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-3xl">folder</span>
+        </div>
+    </div>
+    <!-- Stat Card 2 -->
+    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+        <div>
+            <p class="text-label-md text-on-surface-variant mb-1">Toplam Yetenek</p>
+            <h3 class="text-headline-md font-bold">@ViewBag.SkillCount</h3>
+        </div>
+        <div class="w-12 h-12 rounded-lg bg-secondary-fixed/30 flex items-center justify-center text-secondary">
+            <span class="material-symbols-outlined text-3xl">bolt</span>
+        </div>
+    </div>
+    <!-- Stat Card 3 -->
+    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+        <div>
+            <p class="text-label-md text-on-surface-variant mb-1">Gelen Mesaj</p>
+            <h3 class="text-headline-md font-bold">@ViewBag.Message</h3>
+        </div>
+        <div class="w-12 h-12 rounded-lg bg-tertiary-fixed/40 flex items-center justify-center text-tertiary">
+            <span class="material-symbols-outlined text-3xl">mail</span>
+        </div>
+    </div>
+    <!-- Stat Card 4 -->
+    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+        <div>
+            <p class="text-label-md text-on-surface-variant mb-1">Toplam Hizmet</p>
+            <h3 class="text-headline-md font-bold">@ViewBag.ServiceCount</h3>
+        </div>
+        <div class="w-12 h-12 rounded-lg bg-on-primary-fixed-variant/10 flex items-center justify-center text-on-primary-fixed-variant">
+            <span class="material-symbols-outlined text-3xl">build</span>
+        </div>
+    </div>
+</div>
+<!-- Main Section (Two Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Son Eklenen Projeler -->
+    <div class="lg:col-span-12 bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+            <h4 class="text-headline-sm text-on-surface">Son Eklenen Projeler</h4>
+            <a class="text-label-md text-primary hover:underline transition-all" href="/Project/Index">Tümünü Gör</a>
+        </div>
+        <div class="p-0">
+            <table class="w-full text-left">
+                <thead class="bg-surface-container-low text-label-md text-on-surface-variant">
+                    <tr>
+                        <th class="px-6 py-3 font-semibold">PROJE</th>
+                        <th class="px-6 py-3 font-semibold">TEKNOLOJİ</th>
+                        <th class="px-6 py-3 font-semibold">DURUM</th>
+                    </tr>
+                </thead>
+                <tbody class="text-body-md divide-y divide-outline-variant">
+                    @foreach (var project in Model.Projects)
+                    {
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded bg-surface-variant overflow-hidden">
+                                        <img class="w-full h-full object-cover" data-alt="A sleek minimalist dashboard UI interface for a SaaS application, featuring clean typography and a blue-focused color scheme. High-fidelity web design visual, professional and modern, architectural lighting style." src="@project.ImageURL" />
+                                </div>
+                                <div>
+                                        <p class="font-bold text-on-surface">@project.Name</p>
+                                        <p class="text-label-sm text-on-surface-variant line-clamp-1">@(project.Description.Length > 100 ? project.Description.Substring(0, 100) : project.Description)</p>
+                                </div>
+                            </div>
+                        </td>
+                            <td class="px-6 py-4">
+                                <div class="flex flex-wrap gap-1 max-w-md">
+                                    @foreach (var projectTechStack in project.ProjectTechStacks)
+                                    {
+                                        <span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] rounded font-bold uppercase whitespace-nowrap">
+                                            @projectTechStack.TechStack.Name
+                                        </span>
+                                    }
+                                </div>
+                            </td>
+                        <td class="px-6 py-4">
+                            <span class="flex items-center gap-1.5 text-label-sm text-primary font-bold">
+                                <span class="w-2 h-2 rounded-full bg-primary"></span> Yayınlandı
+                            </span>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm flex flex-col">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+            <h4 class="text-headline-sm text-on-surface">Yetenekler</h4>
+            <a class="text-label-md text-primary hover:underline transition-all"
+               href="/Skill/Index">
+                Tümünü Gör
+            </a>
+        </div>
+        <div class="flex-1 p-6 space-y-6">
+            @foreach (var skill in Model.Skills)
+            {
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-body-md font-bold">@skill.Name</span>
+                        <span class="text-label-md text-primary">@skill.Value%</span>
+                    </div>
+                    <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+                        <div class="h-full bg-primary rounded-full" style="width: @skill.Value%"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm flex flex-col">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+            <h4 class="text-headline-sm text-on-surface">Son Mesajlar</h4>
+            <a class="text-label-md text-primary hover:underline transition-all" href="/UserMessage/Index">Tümünü Gör</a>
+        </div>
+        <div class="flex-1 p-4 flex flex-col gap-4">
+            @foreach (var message in Model.userMessages)
+            {
+                <div class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+                    <div class="w-10 h-10 rounded-full bg-primary-fixed/20 flex-shrink-0 flex items-center justify-center font-bold text-primary">
+                        @message.Initials
+                    </div>
+                    <div class="flex-1 overflow-hidden">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-bold text-on-surface text-body-md">@message.Name</span>
+                            <span class="text-label-sm text-on-surface-variant">@message.Date.ToShortDateString()</span>
+                        </div>
+                        <p class="text-label-sm text-on-surface-variant truncate pr-4">@(message.MessageBody.Length > 40 ? message.MessageBody.Substring(0, 40) : message.MessageBody)</p>
+                    </div>
+                    <div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

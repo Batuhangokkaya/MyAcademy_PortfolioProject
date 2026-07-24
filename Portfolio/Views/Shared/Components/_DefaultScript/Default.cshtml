@@ -1,0 +1,335 @@
+﻿@*
+    Default Script
+*@
+
+<!-- Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slider = document.getElementById('slider-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        if(slider && prevBtn && nextBtn) {
+            const getScrollAmount = () => {
+                const card = slider.querySelector('.snap-center');
+                if (!card) return 0;
+                const cardWidth = card.offsetWidth;
+                const gap = parseFloat(getComputedStyle(slider).gap) || 0;
+                return cardWidth + gap;
+            };
+
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            });
+        }
+    });
+
+    window.addEventListener("load", function () {
+        // Okların Gösterilmesi.
+        const projectCount = document.querySelectorAll(".project-card").length;
+        const sliderButtons = document.getElementById("Slider-Buttons");
+
+        if (projectCount >= 3) {
+            sliderButtons.style.display = "flex";
+        } else {
+            sliderButtons.style.display = "none";
+        }
+
+        // Proje Kartlarının Ok ile Kaydırılması.
+        const slider = document.getElementById("Slider-Container");
+        document.getElementById("prev-btn").addEventListener("click", () => {
+            slider.scrollBy({
+                left: -500,
+                behavior: "smooth"
+            });
+        });
+
+        document.getElementById("next-btn").addEventListener("click", () => {
+            slider.scrollBy({
+                left: 500,
+                behavior: "smooth"
+            });
+        });
+
+        // Proje Kartlarının Mous ile Kaydırılması.
+        let isDragging = false;
+        let startX = 0;
+        let scrollStart = 0;
+
+        slider.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            slider.classList.replace("cursor-grab", "cursor-grabbing");
+
+            startX = e.clientX;
+            scrollStart = slider.scrollLeft;
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+            slider.classList.replace("cursor-grabbing", "cursor-grab");
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const distance = e.clientX - startX;
+            slider.scrollLeft = scrollStart - distance;
+        });
+
+        slider.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            isDragging = true;
+            startX = e.clientX;
+            scrollStart = slider.scrollLeft;
+        });
+
+             // Hakkımda Söylenenler slider'ı
+        const testimonialSlider =
+            document.getElementById("testimonial-slider");
+
+        let isDraggingTestimonial = false;
+        let startXTestimonial = 0;
+        let scrollStartTestimonial = 0;
+
+        testimonialSlider.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+
+            isDraggingTestimonial = true;
+
+            testimonialSlider.classList.replace(
+                "cursor-grab",
+                "cursor-grabbing"
+            );
+
+            startXTestimonial = e.clientX;
+            scrollStartTestimonial = testimonialSlider.scrollLeft;
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDraggingTestimonial = false;
+
+            testimonialSlider.classList.replace(
+                "cursor-grabbing",
+                "cursor-grab"
+            );
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!isDraggingTestimonial) return;
+
+            e.preventDefault();
+
+            const distance = e.clientX - startXTestimonial;
+
+            testimonialSlider.scrollLeft =
+                scrollStartTestimonial - distance;
+        });
+
+
+        // Proje ve Detaylarının Görünmesi.
+        document.querySelectorAll(".view-project").forEach(button => {
+            button.addEventListener("click", function () {
+                document.getElementById("Project-List").classList.add("hidden");
+                document.getElementById("Project-Detail").classList.remove("hidden");
+                document.getElementById("Detail-Title").textContent =
+                    this.dataset.name;
+                document.getElementById("detail-description").textContent =
+                    this.dataset.description;
+                document.getElementById("detail-image").src =
+                    this.dataset.image;
+                document.getElementById("detail-github").href =
+                    this.dataset.github;
+            });
+        });
+
+        document.getElementById("back-button").addEventListener("click", function () {
+
+            document.getElementById("Project-Detail").classList.add("hidden");
+            document.getElementById("Project-List").classList.remove("hidden");
+
+        });
+    });
+    
+    // Mesaj Gönderme Kartı.
+    function SendMessage(){
+        if(!document.getElementById("MessageForm").checkValidity()){
+            Swal.fire({
+                title: "Hata!",
+                text: "Form bilgilerini lütfen doldurun",
+                icon: "warning",
+                showCancelButton: false,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Tamam",
+                cancelButtonText: "İptal"
+            });
+        }
+        else{
+            Swal.fire({
+                title: "Mesajınız Gönderildi!",
+                text: "Size en kısa sürede dönüş yapılacaktır",
+                icon: "success",
+                showCancelButton: false,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Tamam",
+                cancelButtonText: "İptal",
+        }).then((result) => {
+            if (result.isConfirmed)
+                window.location.href = "/Default/Index";
+            });
+        };
+    }
+
+    // Yıldız Seçimi.
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("Rating");
+
+    let selectedRating = 0;
+
+    function paintStars(rating) {
+        stars.forEach(star => {
+            if (star.dataset.value <= rating) {
+                star.style.fontVariationSettings = "'FILL' 1";
+            }
+            else {
+                star.style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+    }
+    stars.forEach(star => {
+        star.addEventListener("mouseover", function () {
+            paintStars(this.dataset.value);
+        });
+        star.addEventListener("mouseout", function () {
+            paintStars(selectedRating);
+        });
+        star.addEventListener("click", function () {
+            selectedRating = this.dataset.value;
+            ratingInput.value = selectedRating;
+            paintStars(selectedRating);
+        });
+    });
+
+    // Yorum Gönderme Kartı.
+    function SendComment(){
+        event.preventDefault();
+        const form = document.getElementById("CommentForm");
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            Swal.fire({
+                title: "Hata!",
+                text: "Form bilgilerini lütfen doldurun",
+                icon: "warning",
+                confirmButtonText: "Tamam"
+            });
+        return;
+    }Swal.fire({
+        title: "Yorumunuz Gönderildi!",
+        text: "Yorumunuz için teşekkür ederim.",
+        icon: "success",
+        confirmButtonText: "Tamam",
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+
+    function DeleteProject(id){
+        Swal.fire({
+            title: "Silmek İstediğinize Emin misiniz?",
+            text: "Bu işlemi geri alamazsınız!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Evet, Sil!",
+            cancelButtonText: "İptal",
+        }).then((result) => {
+            if (result.isConfirmed)
+            window.location.href = "/Project/DeleteProject/" + id;
+        });
+    }
+
+             document.addEventListener("DOMContentLoaded", function () {
+
+        const techSelect = document.getElementById("techSelect");
+        const addTechButton = document.getElementById("addTechButton");
+        const selectedTechs = document.getElementById("selectedTechs");
+
+        if (!techSelect || !addTechButton || !selectedTechs) {
+            return;
+        }
+
+        addTechButton.addEventListener("click", function () {
+
+            const techStackId = techSelect.value;
+            const techStackName =
+                techSelect.options[techSelect.selectedIndex].text;
+
+            if (techStackId === "") {
+                return;
+            }
+
+            const existingTechnology = selectedTechs.querySelector(
+                `input[name="SelectedTechStackIds"][value="${techStackId}"]`
+            );
+
+            if (existingTechnology) {
+                techSelect.value = "";
+                return;
+            }
+
+            const technologyItem = document.createElement("div");
+
+            technologyItem.className =
+                "bg-secondary-container text-on-secondary-fixed-variant px-3 py-1.5 rounded-full flex items-center gap-2";
+
+            technologyItem.innerHTML = `
+                <span class="text-label-sm">
+                    ${techStackName}
+                </span>
+
+                <button type="button"
+                        class="remove-tech-button material-symbols-outlined text-[16px] hover:text-error">
+                    close
+                </button>
+
+                <input type="hidden"
+                       name="SelectedTechStackIds"
+                       value="${techStackId}" />
+            `;
+
+            selectedTechs.appendChild(technologyItem);
+
+            techSelect.value = "";
+        });
+
+        selectedTechs.addEventListener("click", function (event) {
+
+            const removeButton = event.target.closest(".remove-tech-button");
+
+            if (!removeButton) {
+                return;
+            }
+
+            removeButton.parentElement.remove();
+        });
+    });
+
+    // Micro-interaction for range slider
+    const slider = document.querySelector('input[type="range"]');
+    if (slider) {
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('rangeVal').innerText = `%${val}`;
+        });
+    }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

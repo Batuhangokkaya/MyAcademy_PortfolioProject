@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+@await Component.InvokeAsync("_DefaultHead")
+<body class="bg-background text-on-background antialiased selection:bg-primary/30 selection:text-primary">
+    <!-- TopNavBar -->
+    @await Component.InvokeAsync("_DefaultTopNavbar")
+    <main class="pt-20">
+        <!-- Hero Section -->
+        @await Component.InvokeAsync("_DefaultHero")
+        <!-- About Section -->
+        @await Component.InvokeAsync("_DefaultAbout")
+        <!-- Experience & Education Section -->
+        <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative" id="experience">
+            <div class="max-w-container-max mx-auto">
+                <div class="text-center mb-stack-lg">
+                    <h2 class="font-headline-md text-headline-md text-on-background">Yazılım Yolculuğum</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-2">Geliştirdiğim projeler, edindiğim teknik deneyimler ve tamamladığım eğitimler.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Experience -->
+                    @await Component.InvokeAsync("_DefaultExperience")
+                    <!-- Education -->
+                    @await Component.InvokeAsync("_DefaultEducation")
+                </div>
+            </div>
+        </section>
+        <!-- Services Section -->
+        <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative bg-surface-container-lowest" id="services">
+            <div class="max-w-container-max mx-auto">
+                <h2 class="font-headline-md text-headline-md text-on-background mb-stack-lg">Uzmanlık Alanlarım</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
+                    <!-- Service -->
+                    @await Component.InvokeAsync("_DefaultService")
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Slider Section -->
+        <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative overflow-hidden" id="portfolio">
+            <div class="max-w-container-max mx-auto mb-stack-lg flex justify-between items-end">
+                <div>
+                    <h2 class="font-headline-md text-headline-md text-on-background">Portfolyo</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-2">Geliştirdiğim web uygulamaları ve yazılım projeleri.</p>
+                </div>
+                <div class="gap-4" id="Slider-Buttons" style="display:none">
+                    <button class="p-2 rounded-full border border-outline hover:bg-surface-variant transition-colors text-on-background" id="prev-btn">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+                    <button class="p-2 rounded-full border border-outline hover:bg-surface-variant transition-colors text-on-background" id="next-btn">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+            <div id="Project-List">
+                <div class="flex gap-stack-md overflow-x-auto hide-scrollbar pb-8 px-gutter md:px-0 max-w-container-max mx-auto cursor-grab" id="Slider-Container">
+                    <!-- Project -->
+                    @await Component.InvokeAsync("_DefaultProject")
+                </div>
+            </div>
+            <!-- Project Detail -->
+            <div id="Project-Detail" class="hidden max-w-container-max mx-auto">
+                @await Component.InvokeAsync("_DefaultProjectDetails")
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section class="pt-section-padding-mobile pb-4 md:pt-section-padding-desktop px-gutter relative overflow-hidden" id="comment">
+            <div class="max-w-container-max mx-auto">
+                <h2 class="font-headline-md text-headline-md text-on-background mb-stack-lg text-center">
+                    Hakkımda Söylenenler
+                </h2>
+                <div class="flex flex-nowrap gap-stack-lg overflow-x-auto pb-4 cursor-grab select-none"
+                     style="scrollbar-width: none; -ms-overflow-style: none;"
+                     id="testimonial-slider">
+
+                    @await Component.InvokeAsync("_DefaultTestimonial")
+                </div>
+            </div>
+        </section>
+        <section class="pt-4 pb-10 md:pt-4 md:pb-12 px-gutter relative overflow-hidden">
+            <div class="max-w-container-max mx-auto">
+                <h2 class="font-headline-md text-headline-md text-on-background mb-stack-lg text-center">
+                    Yorumunuz
+                </h2>
+                <div class="grid grid-cols-1 gap-stack-lg">
+                    @await Component.InvokeAsync("_DefaultTestimonialComment")
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative bg-surface-container-lowest" id="contact">
+            <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg">
+                @await Component.InvokeAsync("_DefaultContactInfo")
+                @await Component.InvokeAsync("_DefaultUserMessage")
+            </div>
+        </section>
+        <!-- Footer -->
+        @await Component.InvokeAsync("_DefaultFooter")
+    </main>
+    <!-- Script -->
+    @await Component.InvokeAsync("_DefaultScript")
+</body>
+</html>

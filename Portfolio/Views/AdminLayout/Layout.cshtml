@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="light" lang="tr">
+@await Component.InvokeAsync("_AdminLayoutHead")
+<body class="font-body-md text-body-md">
+    <!-- SideNavBar -->
+    @await Component.InvokeAsync("_AdminLayoutSideBar")
+    <!-- TopNavBar -->
+    @await Component.InvokeAsync("_AdminLayoutHeader")
+    <!-- Main Content Area -->
+    <main class="ml-[260px] pt-16 min-h-screen p-lg mt-2">
+        <!-- Page Title & Stats -->
+        @*<div class="grid grid-cols-12 gap-lg items-start">*@
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+    <script>
+        // Simple micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('opacity-80');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('opacity-80');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('w-80');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('w-80');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

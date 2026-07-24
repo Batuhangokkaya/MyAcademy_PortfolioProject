@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio Admin - Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#191c1d",
+                    "surface-bright": "#f8f9fa",
+                    "surface-container": "#edeeef",
+                    "inverse-surface": "#2e3132",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#5b646b",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#001a41",
+                    "secondary-fixed": "#dbe4ed",
+                    "on-primary": "#ffffff",
+                    "outline": "#717786",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "on-surface": "#191c1d",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-tint": "#005bc0",
+                    "tertiary-fixed": "#ffdbcc",
+                    "inverse-primary": "#adc7ff",
+                    "secondary-fixed-dim": "#bfc8d0",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9fa",
+                    "on-surface-variant": "#414754",
+                    "secondary-container": "#d8e1ea",
+                    "on-tertiary-fixed": "#351000",
+                    "primary-container": "#0070ea",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "on-secondary-fixed-variant": "#3f484f",
+                    "primary-fixed-dim": "#adc7ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e1e3e4",
+                    "on-tertiary-container": "#fffbff",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-dim": "#d9dadb",
+                    "tertiary": "#9e3d00",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary": "#575f67",
+                    "inverse-on-surface": "#f0f1f2",
+                    "tertiary-container": "#c64f00",
+                    "outline-variant": "#c1c6d7",
+                    "on-primary-container": "#fefcff",
+                    "on-secondary-fixed": "#141d23",
+                    "primary": "#0059bb",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface": "#f8f9fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar_width": "260px",
+                    "stack_sm": "0.5rem",
+                    "container_padding": "2rem",
+                    "stack_md": "1rem",
+                    "card_gutter": "1.5rem",
+                    "header_height": "72px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .sidebar-active {
+            border-left: 4px solid #0059bb;
+            background-color: rgba(216, 225, 234, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-background">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-lowest border-r border-outline-variant flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-headline-sm font-bold text-primary">Portfolio Admin</h1>
+<p class="text-label-md text-on-surface-variant tracking-wider">Management Suite</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<!-- Active state logic: Dashboard is active -->
+<a class="flex items-center gap-4 px-6 py-3 text-primary font-bold border-l-4 border-primary bg-secondary-container/30 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="text-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-body-md">About</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-body-md">Messages</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="text-body-md">Skills</span>
+</a>
+</nav>
+<div class="px-6 pt-6 border-t border-outline-variant mt-auto">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a developer named Batuhan Gökkaya, styled in a clean corporate modern portrait aesthetic with soft-box lighting against a neutral grey studio background. The style is sharp and high-resolution, conveying trust and technical expertise for an admin dashboard environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXXai-Evz1xuM4bCGk2k3CO6Bhm_noZTJM-aPaYQxLVGWOosrC5kpNKDhvcZkSGiWmpFJPnx2KjzwHaTFxEUWh38BUo9srPUuS2MT-zS6VPwYub4S5f-uO7VcDY4jh-k_spIWInBh_Lg3R_19Gkqb4Q9V8ok0GGUlKZ6M5XzSE9v05yH1hppVnsRqsT2T4wL01NUw0YfrMZ2v4Eud5apkUZwMTyzwYRo_070r0Nu8MW-5g1zlKtqM4XAXDOa75t-PRCVfkH0A-NA"/>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md font-bold text-on-surface">Batuhan Gökkaya</span>
+<span class="text-label-sm text-on-surface-variant">Admin</span>
+</div>
+</div>
+<a class="flex items-center gap-4 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 h-[72px] w-[calc(100%-260px)] bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-8 z-40">
+<div class="flex items-center bg-surface-container-low px-4 py-2 rounded-lg w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder-on-surface-variant/60" placeholder="Proje ara..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3">
+<span class="text-label-md font-semibold text-on-surface">Batuhan Gökkaya</span>
+<div class="w-8 h-8 rounded-full border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up profile avatar of a tech professional, bright and well-lit, centered composition with a minimalist blurred office background. The color palette consists of cool blues and whites to match the corporate modern UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv7f7cUmt0OfUmwWM-E2WRUGs2MxFpHFwpUAjesWgm1HQWSmZVqBwk5gLPv74hFgXTX5uBgfdnt6aH20mTJ3BH8vCs_0ep48XFdMFSblbB1T2X5eh5rTcDal-28GEYJ5DXNSuXwQbMK-kvtk5E-tMbjCIJeQxBUkKSk-NOjniII86pSheAqRtWeaDtw4n2IPYKQ-Yt2wu3zTuJ9WCrbyZJfkXofEPBW4iId-2z0b0eqeeFsevAOsxRMibAASbIJbFzaMOSMhOEDg"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[260px] pt-[72px] min-h-screen p-8 max-w-[1440px]">
+<!-- Dashboard Header -->
+<header class="mb-10">
+<h2 class="text-display-lg text-on-surface">Dashboard</h2>
+<p class="text-body-lg text-on-surface-variant">Portfolyo içeriklerinizi buradan yönetebilirsiniz.</p>
+</header>
+<!-- Stats Grid (Row 1) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div>
+<p class="text-label-md text-on-surface-variant mb-1">Toplam Proje</p>
+<h3 class="text-headline-md font-bold">12</h3>
+<p class="text-label-sm text-primary mt-2 font-semibold">+2% <span class="font-normal text-on-surface-variant">vs last month</span></p>
+</div>
+<div class="w-12 h-12 rounded-lg bg-primary-fixed/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">folder</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div>
+<p class="text-label-md text-on-surface-variant mb-1">Toplam Yetenek</p>
+<h3 class="text-headline-md font-bold">8</h3>
+<p class="text-label-sm text-on-surface-variant mt-2 font-semibold">0% <span class="font-normal text-on-surface-variant">vs last month</span></p>
+</div>
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div>
+<p class="text-label-md text-on-surface-variant mb-1">Gelen Mesaj</p>
+<h3 class="text-headline-md font-bold">24</h3>
+<p class="text-label-sm text-tertiary mt-2 font-semibold">+15% <span class="font-normal text-on-surface-variant">vs last month</span></p>
+</div>
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed/40 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-3xl">mail</span>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+<div>
+<p class="text-label-md text-on-surface-variant mb-1">Toplam Hizmet</p>
+<h3 class="text-headline-md font-bold">6</h3>
+<p class="text-label-sm text-primary mt-2 font-semibold">+1% <span class="font-normal text-on-surface-variant">vs last month</span></p>
+</div>
+<div class="w-12 h-12 rounded-lg bg-on-primary-fixed-variant/10 flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-3xl">build</span>
+</div>
+</div>
+</div>
+<!-- Main Section (Two Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+<!-- Left Column: Son Eklenen Projeler (Wide) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+<h4 class="text-headline-sm text-on-surface">Son Eklenen Projeler</h4>
+<a class="text-label-md text-primary hover:underline transition-all" href="#">Tümünü Gör</a>
+</div>
+<div class="p-0">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-label-md text-on-surface-variant">
+<tr>
+<th class="px-6 py-3 font-semibold">PROJE</th>
+<th class="px-6 py-3 font-semibold">TEKNOLOJİ</th>
+<th class="px-6 py-3 font-semibold">DURUM</th>
+<th class="px-6 py-3 font-semibold text-right">İŞLEMLER</th>
+</tr>
+</thead>
+<tbody class="text-body-md divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sleek minimalist dashboard UI interface for a SaaS application, featuring clean typography and a blue-focused color scheme. High-fidelity web design visual, professional and modern, architectural lighting style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6oT6t8PlKE9O3sk-vfmjEi_ePQW-IWd57Jr0jG_xeKEOTYP2ttHCEZdRInNqDS-9yo9nLAIL3DrWEQJgpzwPShVyNfJeg8AoaC5IUzDTNZaOPJpjQstU5GAbAeZ6Ax3Q0juocXhqmbphOUQff5oOXSUcwW73-GihF7YvxGZnOZ_vEna84Kd50Dig41PZ0Rj6ntZOmiAHzkFUZ3_bf2y8HkFrmnOO_pX6Uy_vWzz2QsKnZl2tFBLNw2UYIM0KPtaGM44wJQjWUTA"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">E-Ticaret Paneli</p>
+<p class="text-label-sm text-on-surface-variant line-clamp-1">Kapsamlı satış takip sistemi.</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex gap-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded font-bold uppercase">ASP.NET</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded font-bold uppercase">SQL</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-label-sm text-primary font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Yayınlandı
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A smartphone mockup showing a mobile app with bright neon accents on a dark background, representing a modern fintech application. Sharp focus, professional product photography style with soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOWTKl6z2nW8Gmbb961QqJSUiTePzSQGw-va9b_w3AxI0wzkdi-DurLq1zoWSIJsj9HU4lM3UYqkx4993AXMelOcuBQlikm1e30uC9w3sDRVeMGedkhp3aCQnhI8t5xvjm45MZ-8KTOk_WEPBBVZ6OVp1AFHqS52MyN7ZLCfYsMlhAEkXOu2IKY5iq1WB0lzOVbJbzYMvvdqBy0KdtVKw6rBpbnXkTX15sGzr7zwko0WlbVpPLBQdmT8p4FkFE9LGnzdKIj_RaSQ"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Fitness Tracker</p>
+<p class="text-label-sm text-on-surface-variant line-clamp-1">Mobil uyumlu spor asistanı.</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex gap-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded font-bold uppercase">C#</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded font-bold uppercase">API</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-label-sm text-on-surface-variant font-bold">
+<span class="w-2 h-2 rounded-full bg-on-surface-variant"></span> Taslak
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<!-- More projects... -->
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Son Mesajlar (Narrow) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm flex flex-col">
+<div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+<h4 class="text-headline-sm text-on-surface">Son Mesajlar</h4>
+<a class="text-label-md text-primary hover:underline transition-all" href="#">Tümünü Gör</a>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-4">
+<!-- Message Item 1 -->
+<div class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/20 flex-shrink-0 flex items-center justify-center font-bold text-primary">
+                            AÖ
+                        </div>
+<div class="flex-1 overflow-hidden">
+<div class="flex justify-between items-center mb-0.5">
+<span class="font-bold text-on-surface text-body-md">Ahmet Özkan</span>
+<span class="text-label-sm text-on-surface-variant">14:20</span>
+</div>
+<p class="text-label-sm text-on-surface-variant truncate pr-4">Yeni bir proje teklifi için görüşmek...</p>
+</div>
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+</div>
+<!-- Message Item 2 -->
+<div class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group border-l-2 border-transparent">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed/40 flex-shrink-0 flex items-center justify-center font-bold text-secondary">
+                            EY
+                        </div>
+<div class="flex-1 overflow-hidden">
+<div class="flex justify-between items-center mb-0.5">
+<span class="font-bold text-on-surface text-body-md">Elif Yılmaz</span>
+<span class="text-label-sm text-on-surface-variant">Dün</span>
+</div>
+<p class="text-label-sm text-on-surface-variant truncate">Teşekkürler, tasarım harika olmuş.</p>
+</div>
+<!-- Read message: no dot -->
+</div>
+<!-- Message Item 3 -->
+<div class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/30 flex-shrink-0 flex items-center justify-center font-bold text-tertiary">
+                            MK
+                        </div>
+<div class="flex-1 overflow-hidden">
+<div class="flex justify-between items-center mb-0.5">
+<span class="font-bold text-on-surface text-body-md">Mert Kaya</span>
+<span class="text-label-sm text-on-surface-variant">Salı</span>
+</div>
+<p class="text-label-sm text-on-surface-variant truncate">Toplantı saatini güncelleyebilir miyiz?</p>
+</div>
+<div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section (Two Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Left Card: Yetenek Dağılımı -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<h4 class="text-headline-sm text-on-surface mb-6">Yetenek Dağılımı</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-md font-bold">C#</span>
+<span class="text-label-md text-primary">85%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-md font-bold">ASP.NET Core</span>
+<span class="text-label-md text-primary">80%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-md font-bold">SQL</span>
+<span class="text-label-md text-primary">75%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-md font-bold">HTML/CSS</span>
+<span class="text-label-md text-primary">90%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Card: Hızlı İşlemler -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<h4 class="text-headline-sm text-on-surface mb-6">Hızlı İşlemler</h4>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center gap-3 p-4 bg-surface-container hover:bg-primary/10 border border-transparent hover:border-primary/20 rounded-xl transition-all group">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:scale-110 duration-200">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<span class="text-label-md font-bold text-center">Yeni Proje Ekle</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-4 bg-surface-container hover:bg-primary/10 border border-transparent hover:border-primary/20 rounded-xl transition-all group">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary group-hover:scale-110 duration-200">
+<span class="material-symbols-outlined">chat</span>
+</div>
+<span class="text-label-md font-bold text-center">Mesajları Gör</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-4 bg-surface-container hover:bg-primary/10 border border-transparent hover:border-primary/20 rounded-xl transition-all group">
+<div class="w-12 h-12 bg-tertiary/10 rounded-full flex items-center justify-center text-tertiary group-hover:scale-110 duration-200">
+<span class="material-symbols-outlined">manage_accounts</span>
+</div>
+<span class="text-label-md font-bold text-center">Profil Güncelle</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-4 bg-surface-container hover:bg-primary/10 border border-transparent hover:border-primary/20 rounded-xl transition-all group">
+<div class="w-12 h-12 bg-on-primary-fixed-variant/10 rounded-full flex items-center justify-center text-on-primary-fixed-variant group-hover:scale-110 duration-200">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<span class="text-label-md font-bold text-center">Yeni Yetenek Ekle</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Dashboard relevant) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+        // Simple interactivity for navigation and hover effects
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Pre-designed static behavior for the purpose of the demo
+                // Actual routing would happen in a real application
+            });
+        });
+    </script>
+</body></html>

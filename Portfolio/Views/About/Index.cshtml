@@ -1,0 +1,69 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Hakkımda";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Hakkımda
+        </h2>
+
+        <p class="text-body-lg text-on-surface-variant">
+            Hakkımda alanını buradan yönetebilirsiniz
+        </p>
+    </div>
+    @if (Model == null)
+    {
+        <a href="/About/CreateAbout" class="self-end mt-1 inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-on-primary rounded-lg whitespace-nowrap hover:shadow-lg transition-all active:scale-95">
+            <span class="material-symbols-outlined">add</span>
+            <span>Yeni Hakkımda Ekle</span>
+        </a>
+    }
+</header>
+@if (Model != null)
+{
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+        <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full min-w-[1100px] table-fixed text-left border-collapse">
+
+                <thead class="bg-surface-container-low border-b border-outline-variant">
+                    <tr>
+                        <th class="w-[9%] p-gutter font-label-lg text-on-surface-variant uppercase tracking-wider">Görsel</th>
+                        <th class="w-[20%] p-gutter font-label-lg text-on-surface-variant uppercase tracking-wider">Başlık</th>
+                        <th class="w-[30%] p-gutter font-label-lg text-on-surface-variant uppercase tracking-wider">Açıklama</th>
+                        <th class="w-[14%] p-gutter font-label-lg text-on-surface-variant uppercase tracking-wider text-right">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant">
+                    <tr class="hover:bg-surface-container-low transition-colors">
+                        <td class="p-gutter align-middle">
+                            <div class="w-16 h-12 rounded-lg overflow-hidden border border-outline-variant">
+                                <img src="@Model.ImageURL" class="w-full h-full object-cover" />
+                            </div>
+                        </td>
+                        <td class="p-gutter align-middle font-title-md text-on-surface">
+                            @Model.Title
+                        </td>
+                        <td class="p-gutter align-middle font-title-md text-on-surface">
+                            @(Model.Description.Length > 60 ? Model.Description.Substring(0, 60) + "..." : Model.Description)
+                        </td>
+                        <td class="p-gutter align-middle">
+                            <div class="flex items-center justify-end gap-2">
+                                <a href="/About/UpdateAbout/@Model.ID" type="button" class="p-2 hover:bg-primary-fixed rounded-lg text-primary transition-colors" title="Düzenle">
+                                    <span class="material-symbols-outlined">edit</span>
+                                </a>
+                                <a href="/About/DeleteAbout/@Model.ID" type="button" class="p-2 hover:bg-error-container rounded-lg text-error transition-colors" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="p-gutter flex items-center justify-between bg-surface-container-low border-t border-outline-variant">
+        </div>
+    </div>
+}

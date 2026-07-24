@@ -1,0 +1,69 @@
+﻿@model Education
+@{
+    ViewData["Title"] = "Eğitim Ekle";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Eğitim Ekle
+        </h2>
+        <p class="text-body-lg text-on-surface-variant">
+            Eğitiminizi buradan ekleyebilirsiniz.
+        </p>
+    </div>
+</header>
+<div class="px-container-padding py-stack-md max-w-5xl mx-auto">
+    <form asp-controller="Education" asp-action="Create" method="post" class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-8 space-y-8">
+            <div class="space-y-2">
+                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase">Okul Adı</label>
+                <input type="text" asp-for="SchoolName" class="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none" placeholder="Okul adını giriniz" />
+                <span asp-validation-for="SchoolName" class="text-sm text-red-600"></span>
+            </div>
+            <div class="space-y-2">
+                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase">Bölüm</label>
+                <input type="text" min="1" max="100" asp-for="Department" class="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none" placeholder="Bölüm adını giriniz"></input>
+                <span asp-validation-for="Department" class="text-sm text-red-600"></span>
+            </div>
+            <div class="space-y-2">
+                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase">Ortalama</label>
+                <div class="relative">
+                    <input asp-for="GPA" type="text" placeholder="Ortalama giriniz" class="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none" />
+                    <span asp-validation-for="GPA" class="text-sm text-red-600"></span>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase">Başlama Yılı</label>
+                <div class="relative">
+                    <input asp-for="StartDate" type="text" placeholder="Başlama tarihi giriniz" class="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none" />
+                    <span asp-validation-for="StartDate" class="text-sm text-red-600"></span>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase">Devamlılık / Bitirme Tarihi</label>
+                <div class="relative">
+                    <input asp-for="GraduationYear" type="text" placeholder="Devamlılık / Bitirme tarihi giriniz" class="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none" />
+                    <span asp-validation-for="GraduationYear" class="text-sm text-red-600"></span>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase">Açıklama</label>
+                <div class="relative">
+                    <textarea asp-for="Description" rows="10" cols="5" placeholder="Açıklama giriniz" class="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none"></textarea>
+                    <span asp-validation-for="Description" class="text-sm text-red-600"></span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-end items-center gap-4 pt-2">
+                <a href="/Education/Index" class="w-full md:w-auto px-8 py-2.5 rounded-full border border-outline text-on-surface-variant font-title-sm text-center hover:bg-surface-container-high transition-colors">
+                    İptal
+                </a>
+                <button type="submit" class="w-full md:w-auto px-12 py-2.5 rounded-full bg-primary text-on-primary font-title-sm hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                    Ekle
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

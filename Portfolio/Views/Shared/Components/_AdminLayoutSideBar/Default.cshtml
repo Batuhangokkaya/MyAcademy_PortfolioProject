@@ -1,0 +1,123 @@
+﻿@* Admin Layout Side Bar *@
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<aside class="w-sidebar-width h-screen fixed left-0 top-0 bg-surface-lowest border-r border-outline-variant flex flex-col py-lg z-50">
+    <div class="px-md mb-xl">
+        <h2 class="font-h2 text-h2 font-bold text-primary">Portfolyo Admin</h2>
+        <p class="text-on-surface-variant font-label-sm mt-xs">Yönetim Paneli</p>
+    </div>
+    <nav class="flex-1 space-y-1">
+        <!-- Dashboard -->
+        <a href="/Dashboard/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Dashboard" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Dashboard" ? "font-variation-settings: 'FILL' 1;" : "")">dashboard</span>
+            <span class="font-label-md text-label-md @(currentController == "Dashboard" ? "font-semibold" : "")">Dashboard</span>
+        </a>
+
+        <!-- Projects -->
+        <a href="/Project/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Project" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Project" ? "font-variation-settings: 'FILL' 1;" : "")">folder_open</span>
+            <span class="font-label-md text-label-md @(currentController == "Project" ? "font-semibold" : "")">Projelerim</span>
+        </a>
+
+        <!-- Categories -->
+        <a href="/Category/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Category" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Category" ? "font-variation-settings: 'FILL' 1;" : "")">category</span>
+            <span class="font-label-md text-label-md @(currentController == "Category" ? "font-semibold" : "")">Kategoriler</span>
+        </a>
+
+        <!-- Skills -->
+        <a href="/Skill/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Skill" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Skill" ? "font-variation-settings: 'FILL' 1;" : "")">star</span>
+            <span class="font-label-md text-label-md @(currentController == "Skill" ? "font-semibold" : "")">Yeteneklerim</span>
+        </a>
+
+        <!-- Technologies -->
+        <a href="/TechStack/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "TechStack" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "TechStack" ? "font-variation-settings: 'FILL' 1;" : "")">code_blocks</span>
+            <span class="font-label-md text-label-md @(currentController == "TechStack" ? "font-semibold" : "")">Teknolojiler</span>
+        </a>
+
+        <!-- Experiences -->
+        <a href="/Experience/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Experience" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Experience" ? "font-variation-settings: 'FILL' 1;" : "")">work_history</span>
+            <span class="font-label-md text-label-md @(currentController == "Experience" ? "font-semibold" : "")">Deneyimler</span>
+        </a>
+
+        <!-- Education -->
+        <a href="/Education/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Education" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Education" ? "font-variation-settings: 'FILL' 1;" : "")">school</span>
+            <span class="font-label-md text-label-md @(currentController == "Education" ? "font-semibold" : "")">Eğitimler</span>
+        </a>
+
+        <!-- Services -->
+        <a href="/Service/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Service" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Service" ? "font-variation-settings: 'FILL' 1;" : "")">design_services</span>
+            <span class="font-label-md text-label-md @(currentController == "Service" ? "font-semibold" : "")">Hizmetler</span>
+        </a>
+
+        <!-- About -->
+        <a href="/About/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "About" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "About" ? "font-variation-settings: 'FILL' 1;" : "")">person</span>
+            <span class="font-label-md text-label-md @(currentController == "About" ? "font-semibold" : "")">Hakkımızda</span>
+        </a>
+
+        <!-- Contact -->
+        <a href="/ContactInfo/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "ContactInfo" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "ContactInfo" ? "font-variation-settings: 'FILL' 1;" : "")">contact_mail</span>
+            <span class="font-label-md text-label-md @(currentController == "ContactInfo" ? "font-semibold" : "")">İletişim</span>
+        </a>
+
+        <!-- Messages -->
+        <a href="/UserMessage/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "UserMessage" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "UserMessage" ? "font-variation-settings: 'FILL' 1;" : "")">mail</span>
+            <span class="font-label-md text-label-md @(currentController == "UserMessage" ? "font-semibold" : "")">Mesajlar</span>
+        </a>
+
+        <!-- Banner -->
+        <a href="/Banner/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Banner" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Banner" ? "font-variation-settings: 'FILL' 1;" : "")">image</span>
+            <span class="font-label-md text-label-md @(currentController == "Banner" ? "font-semibold" : "")">Banner</span>
+        </a>
+
+        <!-- Site -->
+        <a href="/Default/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Default" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Default" ? "font-variation-settings:'FILL' 1;" : "")">public</span>
+            <span class="font-label-md text-label-md @(currentController == "Default" ? "font-semibold" : "")">Siteye Git</span>
+        </a>
+
+        <!-- Settings -->
+        <a href="/Setting/Index"
+           class="relative flex items-center gap-md px-md py-sm transition-colors duration-200 cursor-pointer active:opacity-80 @(currentController == "Setting" ? "text-primary bg-surface-container-low border-l-4 border-primary" : "text-on-surface-variant hover:bg-surface-container-highest border-l-4 border-transparent")">
+            <span class="material-symbols-outlined" style="@(currentController == "Setting" ? "font-variation-settings: 'FILL' 1;" : "")">settings</span>
+            <span class="font-label-md text-label-md @(currentController == "Setting" ? "font-semibold" : "")">Ayarlar</span>
+        </a>
+    </nav>
+    <div class="flex items-center gap-md">
+        <img class="w-10 h-10 rounded-full object-cover" src="@ViewBag.Image" />
+        <div class="flex-1 flex items-center justify-between">
+            <div>
+                <p class="font-label-md font-bold">@ViewBag.FullName</p>
+                <p class="text-[10px] uppercase">ADMIN</p>
+            </div>
+            <a href="/Auth/Logout"
+               class="text-red-500 hover:text-red-600">
+                <span class="material-symbols-outlined">logout</span>
+            </a>
+        </div>
+    </div>
+</aside>
