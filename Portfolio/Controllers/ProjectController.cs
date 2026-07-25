@@ -26,21 +26,40 @@ namespace Portfolio.Controllers
             return View(projects);
         }
 
+        //[HttpGet]
+        //public IActionResult CreateProject()
+        //{
+        //    var model = new ProjectUpdateViewModel
+        //    {
+        //        SelectedTechStackIds = new List<int>(),
+
+        //        TechStacks = _context.TechStacks
+        //    .OrderBy(x => x.Name)
+        //    .Select(x => new SelectListItem
+        //    {
+        //        Value = x.ID.ToString(),
+        //        Text = x.Name
+        //    })
+        //    .ToList()
+        //    };
+
+        //    return View(model);
+        //}
+
         [HttpGet]
         public IActionResult CreateProject()
         {
             var model = new ProjectUpdateViewModel
             {
-                SelectedTechStackIds = new List<int>(),
-
                 TechStacks = _context.TechStacks
-            .OrderBy(x => x.Name)
-            .Select(x => new SelectListItem
-            {
-                Value = x.ID.ToString(),
-                Text = x.Name
-            })
-            .ToList()
+                    .Select(x => new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.ID.ToString()
+                    })
+                    .ToList(),
+
+                SelectedTechStackIds = new List<int>()
             };
 
             return View(model);
@@ -49,18 +68,17 @@ namespace Portfolio.Controllers
         [HttpPost]
         public IActionResult CreateProject(ProjectUpdateViewModel model)
         {
-            model.SelectedTechStackIds ??= new List<int>();
-
             if (!ModelState.IsValid)
             {
                 model.TechStacks = _context.TechStacks
-                    .OrderBy(x => x.Name)
                     .Select(x => new SelectListItem
                     {
-                        Value = x.ID.ToString(),
-                        Text = x.Name
+                        Text = x.Name,
+                        Value = x.ID.ToString()
                     })
                     .ToList();
+
+                model.SelectedTechStackIds ??= new List<int>();
 
                 return View(model);
             }
@@ -76,18 +94,21 @@ namespace Portfolio.Controllers
             _context.Projects.Add(project);
             _context.SaveChanges();
 
-            foreach (var techStackId in model.SelectedTechStackIds.Distinct())
+            if (model.SelectedTechStackIds != null)
             {
-                _context.ProjectTechStacks.Add(new ProjectTechStack
+                foreach (var techStackId in model.SelectedTechStackIds)
                 {
-                    ProjectID = project.ID,
-                    TechStackID = techStackId
-                });
+                    _context.ProjectTechStacks.Add(new ProjectTechStack
+                    {
+                        ProjectID = project.ID,
+                        TechStackID = techStackId
+                    });
+                }
+
+                _context.SaveChanges();
             }
 
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Project");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -125,6 +146,52 @@ namespace Portfolio.Controllers
 
             return View(model);
         }
+
+        //[HttpPost]
+        //public IActionResult CreateProject(ProjectUpdateViewModel model)
+        //{
+        //    model.SelectedTechStackIds ??= new List<int>();
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        model.TechStacks = _context.TechStacks
+        //            .OrderBy(x => x.Name)
+        //            .Select(x => new SelectListItem
+        //            {
+        //                Value = x.ID.ToString(),
+        //                Text = x.Name
+        //            })
+        //            .ToList();
+
+        //        return View(model);
+        //    }
+
+        //    var project = new Project
+        //    {
+        //        Name = model.Name,
+        //        ImageURL = model.ImageURL,
+        //        Description = model.Description,
+        //        GithubURL = model.GithubURL
+        //    };
+
+        //    _context.Projects.Add(project);
+        //    _context.SaveChanges();
+
+        //    foreach (var techStackId in model.SelectedTechStackIds.Distinct())
+        //    {
+        //        _context.ProjectTechStacks.Add(new ProjectTechStack
+        //        {
+        //            ProjectID = project.ID,
+        //            TechStackID = techStackId
+        //        });
+        //    }
+
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("Index", "Project");
+        //}
+
+
 
         [HttpPost]
 
