@@ -14,11 +14,33 @@ namespace Portfolio.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(bool? isRead)
         {
-            var projects = _context.UserMessages.ToList();
-            ViewBag.UserMessageCount = _context.UserMessages.Count();
-            return View(projects);
+            List<UserMessage> values;
+
+            if (isRead == true)
+            {
+                values = _context.UserMessages
+                    .Where(x => x.IsRead)
+                    .ToList();
+            }
+            else if (isRead == false)
+            {
+                values = _context.UserMessages
+                    .Where(x => !x.IsRead)
+                    .ToList();
+            }
+            else
+            {
+                values = _context.UserMessages.ToList();
+            }
+
+            ViewBag.UserMessageCount   = values.Count();
+            ViewBag.SelectedStatus     = isRead;
+            ViewBag.TotalUnreadMessage = values.Where(x => !x.IsRead).Count();
+            ViewBag.TotalReadMessage   = values.Where(x => x.IsRead).Count();
+
+            return View(values);
         }
 
         [HttpGet]
@@ -60,17 +82,24 @@ namespace Portfolio.Controllers
             return RedirectToAction("Index", "UserMessage");
         }
 
-        public IActionResult IsStatus(int id)
+        [HttpPost]
+        public IActionResult IsStatus(int id, bool isRead)
         {
             var userMessage = _context.UserMessages.Find(id);
 
-            if (userMessage != null)
+            if (userMessage == null)
             {
-                userMessage.IsRead = !userMessage.IsRead;
-                _context.SaveChanges();
+                return NotFound();
             }
 
-            return RedirectToAction("Index", "UserMessage");
+            userMessage.IsRead = isRead;
+            _context.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                isRead  = userMessage.IsRead
+            });
         }
     }
 }
