@@ -42,5 +42,5 @@ SweetAlert2
 <img width="1887" height="803" alt="16" src="https://github.com/user-attachments/assets/83c0416e-ce7f-4122-9ae9-e36ae1fdff53" />
 <img width="1891" height="745" alt="17" src="https://github.com/user-attachments/assets/46bbd59f-a79f-4f0f-a7e5-0ee81d963cb7" />
 <img width="1892" height="850" alt="18" src="https://github.com/user-attachments/assets/de766db3-1fe6-4084-8c9e-c271126e63e9" />
-<img width="1891" height="818" alt="20" src="https://github.com/user-attachments/assets/bebd2be9-769c-4324-b88e-2b0cd46b1417" />
+<img width="1886" height="850" alt="20" src="https://github.com/user-attachments/assets/67483772-1a33-4ccb-83d8-93702212f61b" />
 <img width="1889" height="791" alt="19" src="https://github.com/user-attachments/assets/53bd5f9b-1418-4dff-8bf9-4b9d9fefe277" />
