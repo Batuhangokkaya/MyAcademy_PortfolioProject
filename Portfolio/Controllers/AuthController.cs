@@ -71,6 +71,7 @@ namespace Portfolio.Controllers
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Remove("FullName");
+            HttpContext.Session.Remove("Image");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return RedirectToAction("Login", "Auth");
